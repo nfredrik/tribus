@@ -32,7 +32,7 @@ jobs:
 
       - name: Print PyPI Token Issuer
         run: |
-          echo "Issuer: $(echo ${{ secrets.PYPI_TOKEN }} | cut -d'.' -f2 | base64 --decode | jq -r '.iss')"
+          echo "Issuer: $(echo ${{ secrets.PYPI_TOKEN }})"
 
       - name: Publish package distributions to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
