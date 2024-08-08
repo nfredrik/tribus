@@ -30,8 +30,14 @@ jobs:
       - name: Build package with Poetry
         run: poetry build
 
+      - name: Print PyPI Token Issuer
+        run: |
+          echo "Issuer: $(echo ${{ secrets.PYPI_TOKEN }} | cut -d'.' -f2 | base64 --decode | jq -r '.iss')"
+
       - name: Publish package distributions to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+            password: ${{ secrets.PYPI_TOKEN }}
             
   
         
